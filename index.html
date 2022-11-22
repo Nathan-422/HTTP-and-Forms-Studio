@@ -1,19 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <head>
-	<meta charset="utf-8">
-	<script>
-		// TODO: create a handler
-    window.addEventListener("load", function(){
-        // TODO: register the handler
+  <meta charset="utf-8" />
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script>
+    // TODO: create a handler
+    window.addEventListener("load", function () {
+      // TODO: register the handler
+
+      const form = document.getElementById("searchForm");
+      const submitButton = document.getElementById("submitButton");
+      //   const textInput = document;
+
+      form.addEventListener("submit", function (event) {
+        setSearchEngine();
+      });
+
+      function setSearchEngine() {
+        const engine = document.querySelector("input[name='engine']:checked");
+        const actions = {
+          google: "https://www.google.com/search",
+          duckDuckGo: "https://duckduckgo.com/",
+          bing: "https://www.bing.com/search",
+          ask: "https://www.ask.com/web",
+        };
+
+        let url = actions[engine.value];
+        form.action = url;
+
+        // event.preventDefault();
+      }
     });
-	</script>
+  </script>
 </head>
 
 <body>
+  <form id="search-form" target="_blank">
+    <input id="text-field" type="text" name="q"/>
+    <br>
+    <!--Carrie put breaks here -->
 
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
-	</form>
+    <label for="google-button"> Google:</label>
+    <input id="google-button" type="radio" name="engine" value="google" />
 
+    <label for="duckDuckGo-button"> DuckDuckGo:</label>
+    <input
+      id="duckDuckGo-button"
+      type="radio"
+      name="engine"
+      value="duckDuckGo"
+    />
+
+    <label for="bing-button"> Bing:</label>
+    <input id="bing-button" type="radio" name="engine" value="bing" />
+
+    <label for="ask-button"> Ask:</label>
+    <input id="ask-button" type="radio" name="engine" value="ask" />
+
+    <button type="submit" id="submitButton">Go!</button>
+  </form>
 </body>
